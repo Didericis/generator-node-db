@@ -1,0 +1,32 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "<%= dev_db_user %>",
+    "password": null,
+    "host": "127.0.0.1",
+    "database": "<%= dev_db %>"
+  },
+  "test": {
+    "driver": "pg",
+    "user": "<%= dev_db_user %>",
+    "password": null,
+    "host": "127.0.0.1",
+    "database": "<%= test_db %>"
+  },
+  "prod": {
+    "driver": "pg",
+    "user": { "ENV": "DATABASE_USER" },
+    "password": { "ENV": "DATABASE_PASSWORD" },
+    "host": { "ENV": "DATABASE_HOST" },
+    "port": { "ENV": "DATABASE_PORT" },
+    "database": { "ENV": "DATABASE_NAME" }
+  },
+  "env": {
+    "driver": "pg",
+    "user": { "ENV": "DATABASE_USER" },
+    "password": { "ENV": "DATABASE_PASSWORD" },
+    "host": { "ENV": "DATABASE_HOST" },
+    "port": { "ENV": "DATABASE_PORT" },
+    "database": { "ENV": "DATABASE_NAME" }
+  }
+}

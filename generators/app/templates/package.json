@@ -1,0 +1,22 @@
+{
+  "name": "<%= appname %>-db",
+  "version": "0.0.1",
+  "description": "<%= appname %> database migrations",
+  "scripts": {
+    "db:create": "createdb <%= dev_db %> && npm run db:up",
+    "db:create:test": "createdb <%= test_db %> && npm run db:up -- -e test",
+    "db:drop": "dropdb <%= dev_db %>",
+    "db:drop:test": "dropdb <%= test_db %>",
+    "db:down": "db-migrate down",
+    "db:reset": "dropdb <%= dev_db %> && npm run db:create",
+    "db:reset:test": "dropdb <% test_db %> && npm run db:create:test",
+    "db:migrate": "db-migrate",
+    "db:up": "db-migrate up",
+    "db:up:env": "db-migrate up -e env",
+    "db:up:test": "db-migrate up -e test"
+  },
+  "engines": {
+    "node": "8.5.0",
+    "npm": "5.3.0"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "knex": {    
+    "database": "<%= test_db %>",
+    "user": "<%= test_db_user %>",
+    "password": null,
+    "host": "127.0.0.1"
+  }
+}
