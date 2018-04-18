@@ -12,6 +12,11 @@ module.exports = class extends Generator {
     return username().then(user => 
       this.prompt([{
         type    : 'input',
+        name    : 'folder',
+        message : 'Folder name',
+        default : `${_.snakeCase(this.options.appname)}`, 
+      }, {
+        type    : 'input',
         name    : 'dev_db',
         message : 'Development database name',
         default : `${_.snakeCase(this.options.appname)}_development`, 
@@ -19,24 +24,25 @@ module.exports = class extends Generator {
         type    : 'input',
         name    : 'test_db',
         message : 'Test database name',
-      default : `${_.snakeCase(this.options.appname)}_test`, 
-    }, {
-      type    : 'input',
-      name    : 'dev_db_user',
-      message : 'Development database user',
-      default : user,
-    }, {
-      type    : 'input',
-      name    : 'test_db_user',
-      message : 'Test database user',
-      default : user,
-    }]).then((answers) => {
-      this.destinationRoot(path.join(process.cwd(), this.options.appname));
-      this.config.set('dev_db', answers.dev_db);
-      this.config.set('test_db', answers.test_db);
-      this.config.set('dev_db_user', answers.dev_db_user);
-      this.config.set('test_db_user', answers.test_db_user);
-    }));
+        default : `${_.snakeCase(this.options.appname)}_test`, 
+      }, {
+        type    : 'input',
+        name    : 'dev_db_user',
+        message : 'Development database user',
+        default : user,
+      }, {
+        type    : 'input',
+        name    : 'test_db_user',
+        message : 'Test database user',
+        default : user,
+      }]).then((answers) => {
+        this.destinationRoot(path.join(process.cwd(), answers.folder));
+        this.config.set('dev_db', answers.dev_db);
+        this.config.set('test_db', answers.test_db);
+        this.config.set('dev_db_user', answers.dev_db_user);
+        this.config.set('test_db_user', answers.test_db_user);
+      })
+    );
   }
   writing() {
     [
